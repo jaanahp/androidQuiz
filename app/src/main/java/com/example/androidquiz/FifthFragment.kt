@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 
 // the fragment initialization parameters
 private const val ARG_STRING_ANSWERS = "answers"
+private const val ARG_INT_CORRECT = "correct"
 
 /**
  * A simple [Fragment] subclass.
@@ -18,11 +20,14 @@ private const val ARG_STRING_ANSWERS = "answers"
  */
 class FifthFragment : Fragment() {
     private var answers: String? = null
+    private var correct: Int? = null
+    private lateinit var textViewAnswer: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             answers = it.getString(ARG_STRING_ANSWERS)
+            correct = it.getInt(ARG_INT_CORRECT)
         }
     }
 
@@ -39,12 +44,44 @@ class FifthFragment : Fragment() {
 
         val buttonA5 = view.findViewById<Button>(R.id.buttonA5)
         val buttonB5 = view.findViewById<Button>(R.id.buttonB5)
+        val buttonToFirst = view.findViewById<Button>(R.id.buttonToFirst)
+        val textViewFifth = view.findViewById<TextView>(R.id.textViewFifth)
+        textViewAnswer = view.findViewById(R.id.textViewAnswer)
 
-        buttonA5.setOnClickListener {
-            findNavController().navigate(R.id.action_fifthFragment_to_FirstFragment)
+
+        if (correct!! <= 1) {
+            textViewAnswer.text = "Tulos: " + correct + "/5"
+            textViewFifth.text = "Peli loppui!"
+            buttonA5.isEnabled = false
+            buttonB5.isEnabled = false
         }
 
-        buttonB5.setOnClickListener {
+        else {
+
+            buttonA5.setOnClickListener {
+                answers = answers + "a"
+                correct = correct?.plus(1)
+
+                if (answers!!.length >= 5) {
+                    buttonA5.isEnabled = false
+                    buttonB5.isEnabled = false
+                    textViewFifth.text = "Peli loppui!"
+                    textViewAnswer.text = "Tulos: " + correct + "/5"
+                }
+            }
+
+            buttonB5.setOnClickListener {
+                answers = answers + "b"
+                if (answers!!.length >= 5) {
+                    buttonA5.isEnabled = false
+                    buttonB5.isEnabled = false
+                    textViewFifth.text = "Peli loppui!"
+                    textViewAnswer.text = "Tulos: " + correct + "/5"
+                }
+            }
+        }
+
+        buttonToFirst.setOnClickListener {
             findNavController().navigate(R.id.action_fifthFragment_to_FirstFragment)
         }
     }
@@ -56,12 +93,12 @@ class FifthFragment : Fragment() {
          *
          * @return A new instance of fragment FifthFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(answers: String) =
             FifthFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_STRING_ANSWERS, answers)
+                    putInt(ARG_INT_CORRECT, correct!!)
                 }
             }
     }

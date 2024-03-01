@@ -14,9 +14,6 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
-        <argument
-            android:name="answers"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -29,6 +26,9 @@
         <argument
             android:name="answers"
             app:argType="string" />
+        <argument
+            android:name="correct"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/thirdFragment"
@@ -41,6 +41,12 @@
         <argument
             android:name="answers"
             app:argType="string" />
+        <argument
+            android:name="correct"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_thirdFragment_to_fifthFragment"
+            app:destination="@id/fifthFragment" />
     </fragment>
     <fragment
         android:id="@+id/fourthFragment"
@@ -53,6 +59,9 @@
         <argument
             android:name="answers"
             app:argType="string" />
+        <argument
+            android:name="correct"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/fifthFragment"
@@ -65,5 +74,8 @@
         <argument
             android:name="answers"
             app:argType="string" />
+        <argument
+            android:name="correct"
+            app:argType="integer" />
     </fragment>
 </navigation>

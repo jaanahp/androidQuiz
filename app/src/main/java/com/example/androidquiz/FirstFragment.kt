@@ -14,7 +14,8 @@ import com.example.androidquiz.databinding.FragmentFirstBinding
  */
 class FirstFragment : Fragment() {
 
-    var answer: String = ""
+    var answers: String = ""
+    var correct: Int = 0
 
     private var _binding: FragmentFirstBinding? = null
 
@@ -39,13 +40,14 @@ class FirstFragment : Fragment() {
         val buttonB1 = view.findViewById<Button>(R.id.buttonB1)
 
         buttonA1.setOnClickListener {
-            answer = "a"
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            answers = "a"
+            findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment(answers, correct))
         }
 
         buttonB1.setOnClickListener {
-            answer = "b"
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            answers = "b"
+            correct += 1
+            findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment(answers, correct))
         }
     }
 
@@ -53,4 +55,5 @@ class FirstFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

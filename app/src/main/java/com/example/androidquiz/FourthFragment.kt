@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_STRING_ANSWERS = "answers"
+private const val ARG_INT_CORRECT = "correct"
 
 /**
  * A simple [Fragment] subclass.
@@ -18,11 +19,13 @@ private const val ARG_STRING_ANSWERS = "answers"
  */
 class FourthFragment : Fragment() {
     private var answers: String? = null
+    private var correct: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             answers = it.getString(ARG_STRING_ANSWERS)
+            correct = it.getInt(ARG_INT_CORRECT)
         }
     }
 
@@ -41,11 +44,14 @@ class FourthFragment : Fragment() {
         val buttonB4 = view.findViewById<Button>(R.id.buttonB4)
 
         buttonA4.setOnClickListener {
-            findNavController().navigate(R.id.action_fourthFragment_to_fifthFragment)
+            answers = answers + "a"
+            findNavController().navigate(FourthFragmentDirections.actionFourthFragmentToFifthFragment(answers!!, correct!!))
         }
 
         buttonB4.setOnClickListener {
-            findNavController().navigate(R.id.action_fourthFragment_to_fifthFragment)
+            answers = answers + "b"
+            correct = correct?.plus(1)
+            findNavController().navigate(FourthFragmentDirections.actionFourthFragmentToFifthFragment(answers!!, correct!!))
         }
     }
 
@@ -56,12 +62,12 @@ class FourthFragment : Fragment() {
          *
          * @return A new instance of fragment FourthFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(answers: String) =
             FourthFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_STRING_ANSWERS, answers)
+                    putInt(ARG_INT_CORRECT, correct!!)
                 }
             }
     }

@@ -9,37 +9,64 @@
 
     <TextView
         android:id="@+id/textViewFifth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="333dp"
+        android:layout_height="52dp"
         android:layout_marginStart="175dp"
-        android:layout_marginTop="200dp"
         android:layout_marginEnd="175dp"
-        android:text="TextView"
+        android:layout_marginBottom="100dp"
+        android:text="@string/questionSpace"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/buttonA5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonA5"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="160dp"
+        android:text="@string/answerGagarin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonA5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="115dp"
-        android:layout_marginEnd="160dp"
-        android:text="Vaihtoehto A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFifth" />
-
-    <Button
         android:id="@+id/buttonB5"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="160dp"
-        android:text="Vaihtoehto B"
+        android:text="@string/answerKomarov"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonA5" />
+
+    <TextView
+        android:id="@+id/textViewAnswer"
+        android:layout_width="107dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="175dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonB5" />
+
+    <Button
+        android:id="@+id/buttonToFirst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="295dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="32dp"
+        android:text="Etusivu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

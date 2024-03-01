@@ -10,4 +10,20 @@
 
     <string name="headline">Tietovisa</string>
     <string name="buttonStart">Aloita</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="questionPlanet">Mikä planeetta on lähinnä Aurinkoa?</string>
+    <string name="planetMercury">Merkurius</string>
+    <string name="planetMars">Mars</string>
+    <string name="questionWoman">Kuka oli ensimmäinen nainen avaruudessa?</string>
+    <string name="answerTereshkova">Valentina Tereshkova</string>
+    <string name="answerEarhart">Amelia Earhart</string>
+    <string name="questionPerson">Kuka oli ensimmäinen ihminen Kuussa?</string>
+    <string name="answerNeil">Neil Armstrong</string>
+    <string name="answerCollins">Michael Collins</string>
+    <string name="questionAtlantic">Kuka oli ensimmäinen ihminen, joka ylitti Atlantin lennolla?</string>
+    <string name="answerLindbergh">Charles Lindbergh</string>
+    <string name="questionSpace">Kuka oli ensimmäinen ihminen avaruudessa?</string>
+    <string name="answerGagarin">Juri Gagarin</string>
+    <string name="answerKomarov">Valentin Komarov</string>
 </resources>

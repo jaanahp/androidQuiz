@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_STRING_ANSWERS = "answers"
-//private const val ARG_PARAM2 = "param2"
+private const val ARG_INT_CORRECT = "correct"
 
 /**
  * A simple [Fragment] subclass.
@@ -19,11 +19,12 @@ private const val ARG_STRING_ANSWERS = "answers"
  */
 class ThirdFragment : Fragment() {
     private var answers: String? = null
-
+    private var correct: Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             answers = it.getString(ARG_STRING_ANSWERS)
+            correct = it.getInt(ARG_INT_CORRECT)
         }
     }
 
@@ -42,11 +43,22 @@ class ThirdFragment : Fragment() {
         val buttonB3 = view.findViewById<Button>(R.id.buttonB3)
 
         buttonA3.setOnClickListener {
-            findNavController().navigate(R.id.action_thirdFragment_to_fourthFragment)
+            answers = answers + "a"
+            correct = correct?.plus(1)
+            if (correct!! == 0) {
+                findNavController().navigate(ThirdFragmentDirections.actionThirdFragmentToFifthFragment(answers!!, correct!!))
+            } else {
+                findNavController().navigate(ThirdFragmentDirections.actionThirdFragmentToFourthFragment(answers!!,correct!!))
+            }
         }
 
         buttonB3.setOnClickListener {
-            findNavController().navigate(R.id.action_thirdFragment_to_fourthFragment)
+            answers = answers + "b"
+            if (correct!! == 0) {
+                findNavController().navigate(ThirdFragmentDirections.actionThirdFragmentToFifthFragment(answers!!, correct!!))
+            } else {
+                findNavController().navigate(ThirdFragmentDirections.actionThirdFragmentToFourthFragment(answers!!,correct!!))
+            }
         }
     }
 
@@ -62,6 +74,7 @@ class ThirdFragment : Fragment() {
             ThirdFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_STRING_ANSWERS, answers)
+                    putInt(ARG_INT_CORRECT, correct!!)
                 }
             }
     }
