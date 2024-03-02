@@ -9,18 +9,12 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.example.androidquiz.databinding.FragmentFirstBinding
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class FirstFragment : Fragment() {
 
     var answers: String = ""
     var correct: Int = 0
 
     private var _binding: FragmentFirstBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -38,16 +32,16 @@ class FirstFragment : Fragment() {
 
         val buttonA1 = view.findViewById<Button>(R.id.buttonA1)
         val buttonB1 = view.findViewById<Button>(R.id.buttonB1)
+        val fragm = FifthFragment.newInstance(answers!!, correct!!)
 
         buttonA1.setOnClickListener {
             answers = "a"
-            findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment(answers, correct))
+            findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment(answers, fragm.checkAnswers(answers)))
         }
 
         buttonB1.setOnClickListener {
             answers = "b"
-            correct += 1
-            findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment(answers, correct))
+            findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment(answers, fragm.checkAnswers(answers)))
         }
     }
 
@@ -55,5 +49,4 @@ class FirstFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

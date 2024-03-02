@@ -8,15 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
 
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_STRING_ANSWERS = "answers"
 private const val ARG_INT_CORRECT = "correct"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FourthFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FourthFragment : Fragment() {
     private var answers: String? = null
     private var correct: Int? = null
@@ -33,7 +27,6 @@ class FourthFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_fourth, container, false)
     }
 
@@ -42,32 +35,26 @@ class FourthFragment : Fragment() {
 
         val buttonA4 = view.findViewById<Button>(R.id.buttonA4)
         val buttonB4 = view.findViewById<Button>(R.id.buttonB4)
+        val fragm = FifthFragment.newInstance(answers!!, correct!!)
 
         buttonA4.setOnClickListener {
             answers = answers + "a"
-            findNavController().navigate(FourthFragmentDirections.actionFourthFragmentToFifthFragment(answers!!, correct!!))
+            findNavController().navigate(FourthFragmentDirections.actionFourthFragmentToFifthFragment(answers!!, fragm.checkAnswers(answers!!)))
         }
 
         buttonB4.setOnClickListener {
             answers = answers + "b"
-            correct = correct?.plus(1)
-            findNavController().navigate(FourthFragmentDirections.actionFourthFragmentToFifthFragment(answers!!, correct!!))
+            findNavController().navigate(FourthFragmentDirections.actionFourthFragmentToFifthFragment(answers!!, fragm.checkAnswers(answers!!)))
         }
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @return A new instance of fragment FourthFragment.
-         */
         @JvmStatic
-        fun newInstance(answers: String) =
+        fun newInstance(answers: String, correct: Int) =
             FourthFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_STRING_ANSWERS, answers)
-                    putInt(ARG_INT_CORRECT, correct!!)
+                    putInt(ARG_INT_CORRECT, correct)
                 }
             }
     }
